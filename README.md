@@ -1,0 +1,1 @@
+template-discord.js-bot
