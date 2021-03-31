@@ -23,7 +23,7 @@ fs.readdir("./libs/", (err, files) => {
 
 fs.readRecursive("./cmds/").forEach(file => {
     if (!file.endsWith(".js")) return;
-    var cmd = require(`../commands/${file}`),
+    var cmd = require(`../cmds/${file}`),
         name = file.split(".")[0];
     if (name.split("/")[1]) name = file.split("/")[1].split(".")[0];
     client.commands.set(name, cmd);
