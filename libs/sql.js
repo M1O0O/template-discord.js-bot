@@ -1,6 +1,12 @@
+/*
+    To use:
+    
+    client.libs.sql.tables()...
+*/
+
 require('dotenv').config();
 
-var colors = require('./colors.js'),
+var log = require('./log.js'),
     mysql = require('mysql'),
     connection = mysql.createConnection({
         host: process.env.SQL_HOST,
@@ -14,11 +20,14 @@ var colors = require('./colors.js'),
 
 connection.connect(function (err) {
     if (err) return console.error('error connecting: ' + err.stack);
-    colors.log(`%Reset%[%Violet%SQL%Reset%] - connected as id %Violet:Dark%${connection.threadId}`);
+    log(`%Reset%[%Violet%SQL%Reset%] - connected as id %Violet%${connection.threadId}`);
 });
 
-exports.exmple = function (name) {
-    connection.query("UPDATE `bans` SET `actif` = 0 WHERE `id` = ?", [id], function (error, results, fields) {
+exports.tables = function (name, callback) {
+    connection.query("SHOW TABLES;", [id], function (error, results, fields) {
         if (error) console.log(error);
+        callback(results)
     });
 };
+
+// ...

@@ -1,10 +1,10 @@
 var options = {
     name: "🌍 ping",
-    description: null,
+    description: null, // or "This is a description"
     usage: {
         template: "ping"
     },
-    permission: null
+    permission: null // or ["PERMISSION_CODE"]
 };
 
 module.exports = {

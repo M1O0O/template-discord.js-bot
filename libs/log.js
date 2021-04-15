@@ -1,3 +1,9 @@
+/*
+    To use:
+    
+    client.libs.log("%Under%This is a %Red%test")...
+*/
+
 const Colors = {};
 
 Colors["%Reset%"] = "\x1b[0m";
@@ -13,10 +19,10 @@ Colors["%White%"] = "\x1b[1m";
 Colors["%Orange%"] = "\x1b[38;2;255;150;0m";
 Colors["%Violet%"] = "\x1b[38;2;255;0;230m";
 
-exports.log = function (msg) {
+module.exports = function (msg) {
     msg += "\x1b[0m";
     Object.keys(Colors).forEach(col => {
-        msg = msg.replace(new RegExp(col, "g"), Colors[col]);
+        msg = msg.replace(new RegExp(`%${col}%`, "g"), Colors[col]);
     });
     console.log(msg);
 };
