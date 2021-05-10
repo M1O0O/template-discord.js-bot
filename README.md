@@ -5,7 +5,7 @@
 - ##### Installation
 		git clone https://github.com/M1O0O/template-discord.js-bot.git
 		cd template-discord.js-bot
-		npm i dotenv mysql discord.js enmap fs
+		npm i
 
 - ##### Start
 		node .

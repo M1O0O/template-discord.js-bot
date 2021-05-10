@@ -1,16 +1,25 @@
 var options = {
-    name: "🌍 ping",
+    name: "ping",
     description: null, // or "This is a description"
     usage: {
         template: "ping"
     },
-    permission: null // or ["PERMISSION_CODE"]
+    permissions_required: {
+        global: {
+            user: null, // or ["PERMISSION_CODE"]
+            client: null
+        },
+        channel: {
+            user: null,
+            client: ["SEND_MESSAGES", "SEND_TTS_MESSAGES"]
+        }
+    }
 };
 
 module.exports = {
     options: options,
 
     run: async (client, message, args, lang, cmdlang) => {
-        message.reply(cmdlang.ping);
+        message.reply("/tts sdgdfg");
     }
 }

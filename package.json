@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/M1O0O/template-discord.js-bot/issues"
   },
-  "homepage": "https://github.com/M1O0O/template-discord.js-bot#readme"
+  "homepage": "https://github.com/M1O0O/template-discord.js-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "dotenv": "^9.0.0",
+    "enmap": "^5.8.5",
+    "fs": "0.0.1-security",
+    "fs-readdir-recursive": "^1.1.0",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  }
 }

@@ -1,6 +1,7 @@
 var Discord = require('discord.js'),
     fs = require('fs'),
     Enmap = require('enmap'),
+     path = require('path');
     client = new Discord.Client();
 
 require('dotenv').config();
@@ -31,7 +32,8 @@ fs.readRecursive("./cmds/").forEach(file => {
 
 fs.readRecursive("./events/").forEach(event => {
     if (!event) return;
-    client.on(event.split('/')[0], require(`../events/${event}`).bind(null, client));
+    const eventName = path.normalize(event).split('\\')[0];
+    client.on(eventName, require(`../events/${event}`).bind(null, client));
     delete require.cache[require.resolve(`../events/${event}`)];
 });
 
