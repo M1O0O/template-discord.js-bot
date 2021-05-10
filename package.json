@@ -1,6 +1,6 @@
 {
   "name": "template-discord.js-bot",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "This rest allows you to quickly set up a discord bot with an event and command handler as well as quickly usable libs",
   "main": "src/main.js",
   "repository": {
