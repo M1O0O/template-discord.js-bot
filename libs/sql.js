@@ -24,7 +24,7 @@ connection.connect(function (err) {
 });
 
 exports.tables = function (name, callback) {
-    connection.query("SHOW TABLES;", [id], function (error, results, fields) {
+    connection.query("SHOW TABLES;", [name], function (error, results, fields) {
         if (error) console.log(error);
         callback(results)
     });
