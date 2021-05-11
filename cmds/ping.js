@@ -20,6 +20,6 @@ module.exports = {
     options: options,
 
     run: async (client, message, args, lang, cmdlang) => {
-        message.reply("/tts sdgdfg");
+        message.reply("pong!", { tts: true });
     }
 }
