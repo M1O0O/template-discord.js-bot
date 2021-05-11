@@ -1,7 +1,7 @@
 /*
     To use:
     
-    client.libs.sql.tables()...
+    client.libs.sql.***(args1, args2, ...)
 */
 
 require('dotenv').config();
@@ -23,6 +23,10 @@ connection.connect(function (err) {
     log(`%Reset%[%Violet%SQL%Reset%] - connected as id %Violet%${connection.threadId}`);
 });
 
+/**
+*
+* @param {String} name
+*/
 exports.tables = function (name, callback) {
     connection.query("SHOW TABLES;", [name], function (error, results, fields) {
         if (error) console.log(error);

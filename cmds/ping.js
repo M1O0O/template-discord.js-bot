@@ -14,11 +14,19 @@ var options = {
             client: ["SEND_MESSAGES", "SEND_TTS_MESSAGES"]
         }
     }
-};
+}, Discord = require('discord.js');
 
 module.exports = {
     options: options,
 
+    /**
+    *
+    * @param {Discord.Client} client
+    * @param {Discord.Message} message
+    * @param {Array} args
+    * @param {JSON} lang
+    * @param {JSON} cmdlang
+    */
     run: async (client, message, args, lang, cmdlang) => {
         message.reply("pong!", { tts: true });
     }

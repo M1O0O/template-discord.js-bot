@@ -13,6 +13,10 @@ Colors["%White%"] = "\x1b[1m";
 Colors["%Orange%"] = "\x1b[38;2;255;150;0m";
 Colors["%Violet%"] = "\x1b[38;2;255;0;230m";
 
+/**
+*
+* @param {String} msg
+*/
 module.exports = (msg) => {
     msg += "\x1b[0m";
     Object.keys(Colors).forEach(col => {

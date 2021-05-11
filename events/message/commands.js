@@ -1,6 +1,11 @@
 var lang = require('../../src/lang.json'),
-    { MessageEmbed } = require('discord.js');
+    Discord = require('discord.js');
 
+/**
+*
+* @param {Discord.Client} client
+* @param {Discord.Message} message
+*/
 module.exports = (client, message) => {
     if (message.author.bot || message.content.indexOf(client.prefix) !== 0) return;
 
@@ -53,7 +58,7 @@ module.exports = (client, message) => {
     }
 
     if (missingSomeOne) {
-        var embed = new MessageEmbed()
+        var embed = new Discord.MessageEmbed()
             .setTitle('<Erreur de permission/>')
             .setColor('#e534eb')
             .setDescription(`Il semblerait qu'une personne manque de permission dans le serveur \`${message.guild.name}\` !\nVoici la liste des permission(s) manquante(s)`)
