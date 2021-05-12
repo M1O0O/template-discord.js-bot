@@ -1,7 +1,7 @@
 var Discord = require('discord.js'),
     fs = require('fs'),
     Enmap = require('enmap'),
-     path = require('path');
+    path = require('path'),
     client = new Discord.Client();
 
 require('dotenv').config();
