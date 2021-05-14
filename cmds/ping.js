@@ -20,7 +20,6 @@ module.exports = {
     options: options,
 
     /**
-    *
     * @param {Discord.Client} client
     * @param {Discord.Message} message
     * @param {Array} args

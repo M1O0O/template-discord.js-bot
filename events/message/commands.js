@@ -2,7 +2,6 @@ var lang = require('../../src/lang.json'),
     Discord = require('discord.js');
 
 /**
-*
 * @param {Discord.Client} client
 * @param {Discord.Message} message
 */

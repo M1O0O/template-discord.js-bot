@@ -24,7 +24,6 @@ connection.connect(function (err) {
 });
 
 /**
-*
 * @param {String} name
 */
 exports.tables = function (name, callback) {
