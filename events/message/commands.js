@@ -75,7 +75,6 @@ module.exports = (client, message) => {
 
         for (const [arg, param] of Object.entries(cmd.options.usage.args)) {
             args[arg] = args[argCount];
-            argCount++;
 
             if (param.required && !args[argCount]) {
                 var embed = new Discord.MessageEmbed()
@@ -84,6 +83,8 @@ module.exports = (client, message) => {
                     .setDescription(`Il semblerait qu'il manque un argument dans votre commande !\nUtilisation: ${client.prefix}${client.libs.boldText(cmd.options.usage.template, arg)}\n[Message concerné](${message.url})`)
                 return message.reply(embed);
             }
+
+            argCount++;
         }
         cmd.run(client, message, args, lang, lang.cmds[command]);
     }
