@@ -6,11 +6,14 @@ module.exports = {
         description: null, // or "This is a description"
         channelAllowed: null, // or ["CHANNEL_ID"]
         usage: {
-            template: "ping [message]",
+            template: "ping [arg1] [arg2]",
             args: {
-                "message": {
+                "arg1": {
                     required: true
-                }
+                },
+                "arg2": {
+                    required: true
+                },
             }
         },
         permissions_required: {
@@ -33,6 +36,6 @@ module.exports = {
     * @param {JSON} cmdlang
     */
     run: async (client, message, args, lang, cmdlang) => {
-        message.reply(`Pong!\n${args.message}`);
+        message.reply(`Pong!\n${args.arg1}`);
     }
 }

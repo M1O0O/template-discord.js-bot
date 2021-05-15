@@ -71,13 +71,13 @@ module.exports = (client, message) => {
 
         return message.author.send(embed);
     } else {
-        for (const [arg, param] of Object.entries(cmd.options.usage.args)) {
-            var argCount = 0;
+        var argCount = 0;
 
+        for (const [arg, param] of Object.entries(cmd.options.usage.args)) {
             args[arg] = args[argCount];
             argCount++;
 
-            if (param.required && !args[0]) {
+            if (param.required && !args[argCount]) {
                 var embed = new Discord.MessageEmbed()
                     .setTitle('<Erreur d\'arguments/>')
                     .setColor('#fc0303')
