@@ -14,6 +14,7 @@ module.exports = (client, message) => {
 
     if (!cmd) return;
     if (message.channel.type != "text") return;
+    if (cmd.options.channelAllowed && cmd.options.channelAllowed.some(chanAllowed => message.channel.id != chanAllowed)) return;
 
     var permissionsMissing = {
         global: {
@@ -68,7 +69,22 @@ module.exports = (client, message) => {
         if (permissionsMissing.channel.user.length > 0) embed.addField("Dans le channel pour l'utilisateur", permissionsMissing.channel.user);
         if (permissionsMissing.channel.client.length > 0) embed.addField('Dans le channel pour le bot', permissionsMissing.channel.client);
 
-        message.author.send(embed);
-    } else cmd.run(client, message, args, lang, lang.cmds[command]);
+        return message.author.send(embed);
+    } else {
+        for (const [arg, param] of Object.entries(cmd.options.usage.args)) {
+            var argCount = 0;
 
+            args[arg] = args[argCount];
+            argCount++;
+
+            if (param.required && !args[0]) {
+                var embed = new Discord.MessageEmbed()
+                    .setTitle('<Erreur d\'arguments/>')
+                    .setColor('#fc0303')
+                    .setDescription(`Il semblerait qu'il manque un argument dans votre commande !\nUtilisation: ${client.prefix}${client.libs.boldText(cmd.options.usage.template, arg)}\n[Message concerné](${message.url})`)
+                return message.reply(embed);
+            }
+        }
+        cmd.run(client, message, args, lang, lang.cmds[command]);
+    }
 }

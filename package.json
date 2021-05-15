@@ -1,29 +1,29 @@
 {
-  "name": "template-discord.js-bot",
-  "version": "1.0.0",
-  "description": "This rest allows you to quickly set up a discord bot with an event and command handler as well as quickly usable libs",
-  "main": "src/main.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/M1O0O/template-discord.js-bot.git"
-  },
-  "keywords": [
-    "template",
-    "discord.js"
-  ],
-  "author": "M1000",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/M1O0O/template-discord.js-bot/issues"
-  },
-  "homepage": "https://github.com/M1O0O/template-discord.js-bot#readme",
-  "dependencies": {
-    "discord.js": "^12.5.3",
-    "dotenv": "^9.0.0",
-    "enmap": "^5.8.5",
-    "fs": "0.0.1-security",
-    "fs-readdir-recursive": "^1.1.0",
-    "mysql": "^2.18.1",
-    "path": "^0.12.7"
-  }
+    "name": "template-discord.js-bot",
+    "version": "1.2.0",
+    "description": "This rest allows you to quickly set up a discord bot with an event and command handler as well as quickly usable libs",
+    "main": "src/main.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/M1O0O/template-discord.js-bot.git"
+    },
+    "keywords": [
+        "template",
+        "discord.js"
+    ],
+    "author": "M1000",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/M1O0O/template-discord.js-bot/issues"
+    },
+    "homepage": "https://github.com/M1O0O/template-discord.js-bot#readme",
+    "dependencies": {
+        "discord.js": "^12.5.3",
+        "dotenv": "^9.0.0",
+        "enmap": "^5.8.5",
+        "fs": "0.0.1-security",
+        "fs-readdir-recursive": "^1.1.0",
+        "mysql": "^2.18.1",
+        "path": "^0.12.7"
+    }
 }

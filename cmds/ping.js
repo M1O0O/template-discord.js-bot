@@ -1,23 +1,29 @@
-var options = {
-    name: "ping",
-    description: null, // or "This is a description"
-    usage: {
-        template: "ping"
-    },
-    permissions_required: {
-        global: {
-            user: null, // or ["PERMISSION_CODE"]
-            client: null
-        },
-        channel: {
-            user: null,
-            client: ["SEND_MESSAGES", "SEND_TTS_MESSAGES"]
-        }
-    }
-}, Discord = require('discord.js');
+const Discord = require('discord.js');
 
 module.exports = {
-    options: options,
+    options: {
+        name: "ping",
+        description: null, // or "This is a description"
+        channelAllowed: null, // or ["CHANNEL_ID"]
+        usage: {
+            template: "ping [message]",
+            args: {
+                "message": {
+                    required: true
+                }
+            }
+        },
+        permissions_required: {
+            global: {
+                user: null, // or ["PERMISSION_CODE"]
+                client: null
+            },
+            channel: {
+                user: null,
+                client: ["SEND_MESSAGES"]
+            }
+        }
+    },
 
     /**
     * @param {Discord.Client} client
@@ -27,6 +33,6 @@ module.exports = {
     * @param {JSON} cmdlang
     */
     run: async (client, message, args, lang, cmdlang) => {
-        message.reply("pong!", { tts: true });
+        message.reply(`Pong!\n${args.message}`);
     }
 }
