@@ -36,6 +36,6 @@ module.exports = {
     * @param {JSON} cmdlang
     */
     run: async (client, message, args, lang, cmdlang) => {
-        message.reply(`Pong!\n${args.arg1}`);
+        message.reply(`Pong!\nArg1: ${args.arg1}\nArg2: ${args.arg2}`);
     }
 }

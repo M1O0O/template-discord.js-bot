@@ -6,6 +6,11 @@ var Discord = require('discord.js'),
 
 require('dotenv').config();
 
+if (!process.env.TOKEN) {
+    console.log(`Merci de renomé et configurer le fichier ".env_template" en ".env"`)
+    return process.exit()
+}
+
 fs.readRecursive = require('fs-readdir-recursive');
 
 client.commands = new Discord.Collection();

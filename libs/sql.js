@@ -6,6 +6,8 @@
 
 require('dotenv').config();
 
+if (process.env.ENABLE_SQL == "false") return;
+
 var log = require('./log.js'),
     mysql = require('mysql'),
     connection = mysql.createConnection({
