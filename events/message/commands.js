@@ -67,15 +67,15 @@ module.exports = async (client, message) => {
         if (permissionsMissing.global.user.length > 0) embedLog.addField(`- Dans le \`serveur\` pour l'utilisateur`, permissionsMissing.global.user, true);
         if (permissionsMissing.global.client.length > 0) embedLog.addField(`- Dans le \`serveur\` pour le bot`, permissionsMissing.global.client, true);
 
-        if (permissionsMissing.channel.user.length > 0) embedLog.addField(`- Dans \`${message.channel.name}\` pour l'utilisateur`, permissionsMissing.channel.user, true);
-        if (permissionsMissing.channel.client.length > 0) embedLog.addField(`- Dans \`${message.channel.name}\` pour le bot`, permissionsMissing.channel.client, true);
+        if (permissionsMissing.channel.user.length > 0) embedLog.addField(`- Dans le channel pour l'utilisateur`, permissionsMissing.channel.user, true);
+        if (permissionsMissing.channel.client.length > 0) embedLog.addField(`- Dans le channel pour le bot`, permissionsMissing.channel.client, true);
 
-        await message.author.send(embedLog);
+        await message.author.send(embedLog).catch(err => console.log(`Erreur lors de l'envoie du message des manque de permissions a l'auteur \n${err.message}`));
 
         // Send log to Owner of guild
         await embedLog.addField('- Utilisateur', `${message.author.tag}\n${message.author.id}`, true)
 
-        await message.guild.owner.send(embedLog);
+        await message.guild.owner.send(embedLog).catch(err => console.log(`Erreur lors de l'envoie du message des manque de permissions a l'owner' \n${err.message}`));
         return;
     }
 

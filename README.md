@@ -6,6 +6,7 @@
 		git clone https://github.com/M1O0O/template-discord.js-bot.git
 		cd template-discord.js-bot
 		npm i
+	Note: Rename and edit ".env_Template" to ".env"
 
 - ##### Start
 		node .
