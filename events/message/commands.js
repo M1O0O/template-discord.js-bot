@@ -34,28 +34,19 @@ module.exports = async (client, message) => {
 
         switch (optionName) {
             case "global":
-                if (clientPerms) for (const perm of clientPerms) if (!message.guild.me.hasPermission(perm)) {
-                    missingSomePerm = true;
-                    permissionsMissing.global.client.push(perm);
-                }
-                if (userPerms) for (const perm of userPerms) if (!message.member.guild.me.hasPermission(perm)) {
-                    missingSomePerm = true;
-                    permissionsMissing.global.user.push(perm);
-                }
+                if (clientPerms) for (const perm of clientPerms) if (!message.guild.me.hasPermission(perm)) permissionsMissing.global.client.push(perm);
+                if (userPerms) for (const perm of userPerms) if (!message.member.guild.me.hasPermission(perm)) permissionsMissing.global.user.push(perm);
                 break;
 
             case "channel":
-                if (clientPerms) for (const perm of clientPerms) if (!message.guild.me.permissionsIn(message.channel).has(perm)) {
-                    missingSomePerm = true;
-                    permissionsMissing.channel.client.push(perm);
-                }
-                if (userPerms) for (const perm of userPerms) if (!message.member.guild.me.permissionsIn(message.channel).has(perm)) {
-                    missingSomePerm = true;
-                    permissionsMissing.channel.user.push(perm);
-                }
+                if (clientPerms) for (const perm of clientPerms) if (!message.guild.me.permissionsIn(message.channel).has(perm)) permissionsMissing.channel.client.push(perm);
+                if (userPerms) for (const perm of userPerms) if (!message.member.guild.me.permissionsIn(message.channel).has(perm)) permissionsMissing.channel.user.push(perm);
                 break;
         }
     }
+
+    if (permissionsMissing.global.user.length > 0 || permissionsMissing.global.client.length > 0) missingSomePerm = true;
+    if (permissionsMissing.channel.user.length > 0 || permissionsMissing.channel.client.length > 0) missingSomePerm = true;
 
     if (missingSomePerm) {
         // Send log to Author of message
