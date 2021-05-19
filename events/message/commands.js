@@ -50,25 +50,29 @@ module.exports = async (client, message) => {
 
     if (missingSomePerm) {
         // Send log to Author of message
+        var langOfThis = lang.default.embed.errorPermissions;
+
         var embedLog = new Discord.MessageEmbed()
-            .setAuthor('<Erreur de permission/>', client.user.avatarURL(), null)
-            .setColor('#f59e42')
-            .setDescription(`Il semblerait qu'une personne manque de permission dans le serveur !\nVoici la liste des permission(s) manquante(s)\n[Message concerné](${message.url})`)
+            .setAuthor(langOfThis.title, client.user.avatarURL(), null)
+            .setColor(langOfThis.color)
+            .setDescription(client.libs.replaceWithObject(langOfThis.description, { "$messageUrl": message.url }))
 
-        if (permissionsMissing.global.user.length > 0) embedLog.addField(`- Dans le \`serveur\` pour l'utilisateur`, permissionsMissing.global.user, true);
-        if (permissionsMissing.global.client.length > 0) embedLog.addField(`- Dans le \`serveur\` pour le bot`, permissionsMissing.global.client, true);
+        if (permissionsMissing.global.user.length > 0) embedLog.addField(langOfThis.Fields.missingGlobalUser, permissionsMissing.global.user, true);
+        if (permissionsMissing.global.client.length > 0) embedLog.addField(langOfThis.Fields.missingGlobalClient, permissionsMissing.global.client, true);
 
-        if (permissionsMissing.channel.user.length > 0) embedLog.addField(`- Dans le channel pour l'utilisateur`, permissionsMissing.channel.user, true);
-        if (permissionsMissing.channel.client.length > 0) embedLog.addField(`- Dans le channel pour le bot`, permissionsMissing.channel.client, true);
+        if (permissionsMissing.channel.user.length > 0) embedLog.addField(langOfThis.Fields.missingChannelUser, permissionsMissing.channel.user, true);
+        if (permissionsMissing.channel.client.length > 0) embedLog.addField(langOfThis.Fields.missingChannelClient, permissionsMissing.channel.client, true);
 
-        await message.author.send(embedLog).catch(err => console.log(`Erreur lors de l'envoie du message des manque de permissions a l'auteur \n${err.message}`));
+        await message.author.send(embedLog).catch(err => console.log(client.libs.replaceWithObject(langOfThis.logs.cannotSendToUser, { "$message": err.message })));
 
         // Send log to Owner of guild
-        await embedLog.addField('- Utilisateur', `${message.author.tag}\n${message.author.id}`, true)
+        await embedLog.addField(`- ${lang.default.user}`, `${message.author.tag}\n${message.author.id}`, true)
 
-        await message.guild.owner.send(embedLog).catch(err => console.log(`Erreur lors de l'envoie du message des manque de permissions a l'owner' \n${err.message}`));
+        await message.guild.owner.send(embedLog).catch(err => console.log(client.libs.replaceWithObject(langOfThis.logs.cannotSendToUser, { "$message": err.message })));
         return;
     }
+
+    langOfThis = lang.default.embed.errorArgument;
 
     var argCount = 0;
     var missingArgs = [];
@@ -80,14 +84,14 @@ module.exports = async (client, message) => {
     }
 
     if (missingArgs.length > 0) {
-        var missingArgsText = `> Utilisation :\n > ${client.prefix}`;
+        var missingArgsText = `> ${lang.default.user} :\n > ${client.prefix}`;
 
         missingArgsText += `${client.libs.missingArgRequired(client.libs.boldText(cmd.options.usage.template, missingArgs), missingArgs)}`;
 
         var missingArgEmbed = new Discord.MessageEmbed()
-            .setTitle('<Erreur d\'arguments/>')
-            .setColor('#fc0303')
-            .setDescription(`Il semblerait qu'il manque un/des argument(s) dans votre commande !\n${missingArgsText}\n\n* : Argument obligatoire\n\n[Message concerné](${message.url})`)
+            .setTitle(client.libs.replaceWithObject(langOfThis.title, { "$type": "arguments" }))
+            .setColor(langOfThis.color)
+            .setDescription(client.libs.replaceWithObject(langOfThis.description, { "$text": missingArgsText, "$url": message.url }))
 
         return message.reply(missingArgEmbed);
     }

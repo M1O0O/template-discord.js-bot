@@ -1,4 +1,28 @@
 {
+	"default": {
+		"user": "Utilisateur",
+		"embed": {
+			"errorPermissions": {
+				"title": "<Erreur de permissions/>",
+				"color": "#f59e42",
+				"description": "Il semblerait qu'une personne manque de permission dans le serveur !\nVoici la liste des permission(s) manquante(s)\n[Message concerné]($messageUrl)",
+				"Fields": {
+					"missingChannelUser": "- Dans le channel pour l'utilisateur",
+					"missingChannelClient": "- Dans le channel pour le bot",
+					"missingGlobalUser": "- Dans le `serveur` pour l'utilisateur",
+					"missingGlobalClient": "- Dans le `serveur` pour le bot"
+				},
+				"logs": {
+					"cannotSendToUser": "Erreur lors de l'envoie du message des manque de permissions a l'auteur \n$message"
+				}
+			},
+			"errorArgument": {
+				"title": "<Erreur d'argument/>",
+				"color": "#f59e42",
+				"description": "Il semblerait qu'il manque un/des argument(s) dans votre commande !\n$text\n\n* : Argument obligatoire\n\n[Message concerné]($messageUrl)"
+			}
+		}
+	},
 	"cmds": {
 		"ping": "pong!"
 	}
