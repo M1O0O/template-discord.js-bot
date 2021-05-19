@@ -71,20 +71,26 @@ module.exports = async (client, message) => {
     }
 
     var argCount = 0;
+    var missingArgs = [];
 
-    for (const [arg, param] of Object.entries(cmd.options.usage.args)) {
+    for (var [arg, param] of Object.entries(cmd.options.usage.args)) {
         args[arg] = args[argCount];
-
-        if (param.required && !args[argCount]) {
-            var embed = new Discord.MessageEmbed()
-                .setTitle('<Erreur d\'arguments/>')
-                .setColor('#fc0303')
-                .setDescription(`Il semblerait qu'il manque un argument dans votre commande !\nUtilisation: ${client.prefix}${client.libs.boldText(cmd.options.usage.template, arg)}\n[Message concerné](${message.url})`)
-            return message.reply(embed);
-        }
-
+        if (param.required && !args[argCount]) missingArgs.push(arg);
         argCount++;
     }
-    cmd.run(client, message, args, lang, lang.cmds[command]);
 
+    if (missingArgs.length > 0) {
+        var missingArgsText = `> Utilisation :\n > ${client.prefix}`;
+
+        missingArgsText += `${client.libs.missingArgRequired(client.libs.boldText(cmd.options.usage.template, missingArgs), missingArgs)}`;
+
+        var missingArgEmbed = new Discord.MessageEmbed()
+            .setTitle('<Erreur d\'arguments/>')
+            .setColor('#fc0303')
+            .setDescription(`Il semblerait qu'il manque un/des argument(s) dans votre commande !\n${missingArgsText}\n\n* : Argument obligatoire\n\n[Message concerné](${message.url})`)
+
+        return message.reply(missingArgEmbed);
+    }
+
+    cmd.run(client, message, args, lang, lang.cmds[command]);
 }
