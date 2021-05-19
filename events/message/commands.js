@@ -89,9 +89,12 @@ module.exports = async (client, message) => {
         missingArgsText += `${client.libs.missingArgRequired(client.libs.boldText(cmd.options.usage.template, missingArgs), missingArgs)}`;
 
         var missingArgEmbed = new Discord.MessageEmbed()
-            .setTitle(client.libs.replaceWithObject(langOfThis.title, { "$type": "arguments" }))
+            .setTitle(langOfThis.title)
             .setColor(langOfThis.color)
-            .setDescription(client.libs.replaceWithObject(langOfThis.description, { "$text": missingArgsText, "$url": message.url }))
+            .setDescription(client.libs.replaceWithObject(langOfThis.description, {
+                "$text": missingArgsText,
+                "$url": message.url
+            }));
 
         return message.reply(missingArgEmbed);
     }
