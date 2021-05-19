@@ -37,7 +37,9 @@ fs.readRecursive("./cmds/").forEach(file => {
 
 fs.readRecursive("./events/").forEach(event => {
     if (!event) return;
-    const eventName = path.normalize(event).split('\\')[0];
+    let eventName;
+    if (event.includes("\\")) eventName = path.normalize(event).split('\\')[0];
+    else eventName = path.normalize(event).split('/')[0];
     client.on(eventName, require(`../events/${event}`).bind(null, client));
     delete require.cache[require.resolve(`../events/${event}`)];
 });
